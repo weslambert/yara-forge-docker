@@ -1,0 +1,386 @@
+# Description: Custom scoring configuration file for YARA rules
+
+# Importance score configuration
+# repo - the name of the repository used in the configuration - checked as equals
+# file - the name of the file used in the configuration - checked as endswith
+# name - the name of the rule used in the configuration - checked as startswith
+# importance - the importance score of the rule
+importance-scores:
+  - rule:
+      repo: "ReversingLabs"
+    importance: 25
+  - rule:
+      repo: "Signature Base"
+      file: "gen_webshells.yar"
+    importance: 70
+  - rule:
+      repo: "YARA Style Guide"
+      file: "gen_webshells.yar"
+    importance: 100
+  - rule:
+      repo: "GodModeRules"
+    importance: 60
+
+# FALSE POSITIVES
+# Rules that are prone to false positives
+# The level of the value indicates the amount of false positives caused by the rule
+noisy-rules:
+    # CAPE
+    - name: "CAPE_Cobaltstrikebeacon"
+      quality: -90
+    - name: "CAPE_Emotet"
+      quality: -100
+    - name: "CAPE_Pafish"
+      quality: -60
+    - name: "CAPE_Bumblebeeloader"
+      quality: -80
+    - name: "CAPE_Bumblebeeshellcode"
+      quality: -80
+    - name: "CAPE_Heavensgate"
+      quality: -80
+    - name: "CAPE_Origin"
+      quality: -80
+    - name: "CAPE_Qakbot"
+      quality: -50
+    - name: "CAPE_Agentteslaxor"
+      quality: -50
+    # Elastic
+    - name: "ELASTIC_Multi_EICAR_Ac8F42D6"
+      quality: -50
+    - name: "ELASTIC_Linux_Trojan_Torii_Fa253F2A"
+      quality: -80
+    - name: "ELASTIC_Windows_Hacktool_Cheatengine_Fedac96D"
+      quality: -40
+    - name: "ELASTIC_Linux_Worm_Generic_98Efcd38"
+      quality: -50
+      score: 60
+    - name: "ELASTIC_Linux_Trojan_Torii_Fa253F2A"
+      quality: -50
+    - name: "ELASTIC_Linux_Trojan_Iroffer_53692410"
+      quality: -50
+      score: 60
+    - name: "ELASTIC_Linux_Trojan_Iroffer_013E07De"
+      quality: -50
+      score: 60
+    - name: "ELASTIC_Windows_Trojan_Bruteratel_Ade6C9D5"
+      quality: -30
+      score: 60
+    - name: "ELASTIC_Linux_Hacktool_Earthworm_E3Da43E2"
+      quality: -30
+      score: 60
+    - name: "ELASTIC_Linux_Exploit_Lotoor_F8E9F93C"
+      quality: -80
+    - name: "ELASTIC_Linux_Trojan_Generic_D3Fe3Fae"
+      quality: -30
+      score: 60
+    - name: "ELASTIC_Windows_Vulndriver_Iqvw_B8B45E6B"
+      quality: -20
+      score: 60
+    - name: "ELASTIC_Windows_Vulndriver_Amifldrv_E387D5Ad"
+      quality: -20
+      score: 60
+    - name: "ELASTIC_Linux_Hacktool_Earthworm_82D5C4Cf"
+      quality: -30
+      score: 60
+    - name: "ELASTIC_Linux_Hacktool_Flooder_678C1145"
+      quality: -30
+      score: 60
+    - name: "ELASTIC_Linux_Trojan_Chinaz_A2140Ca1"
+      quality: -30
+      score: 60
+    - name: "ELASTIC_Linux_Trojan_Gafgyt_94A44Aa5"
+      quality: -30
+      score: 60
+    - name: "ELASTIC_Linux_Trojan_Tsunami_47F93Be2"
+      quality: -70
+      score: 60
+    # FireEye
+    - name: "FIREEYE_RT_Hunting_Dotnettojscript_Functions"
+      quality: -80
+    - name: "FIREEYE_RT_Hunting_LNK_Win_Genericlauncher"
+      score: 60
+    - name: "FIREEYE_RT_APT_Backdoor_Win_Dshell_2"
+      quality: -30
+      score: 60
+    # Tellix / McAfee
+    - name: "MCAFEE_ATR_Vbs_Mykins_Botnet"
+      quality: -30
+      score: 60
+    - name: "TRELLIX_ARC_Vbs_Mykins_Botnet"
+      quality: -30
+      score: 60
+    # Telekom Security
+    - name: "TELEKOM_SECURITY_Allow_Rdp_Session_Without_Password"
+      quality: -60
+    - name: "TELEKOM_SECURITY_Cn_Utf8_Windows_Terminal"
+      quality: -50
+    - name: "TELEKOM_SECURITY_Potential_Termserv_Dll_Replacement"
+      quality: -70
+    - name: "TELEKOM_SECURITY_Rdp_Change_Port_Number"
+      quality: -60
+    - name: "TELEKOM_SECURITY_Rdp_Enable_Multiple_Sessions"
+      quality: -60
+      score: 60
+    - name: "TELEKOM_SECURITY_Cn_Utf8_Windows_Terminal"
+      quality: -90
+      score: 40
+    # ESET
+    - name: "ESET_Skip20_Sqllang_Hook"
+      quality: -80
+    - name: "ESET_Turla_Outlook_Pdf"
+      quality: -60
+      score: 60
+    # Arkbird SOLG
+    - name: "ARKBIRD_SOLG_APT_Lazarus_Loader_Dec_2020_1"
+      quality: -70
+    - name: "ARKBIRD_SOLG_APT_Dustsquad_PE_Nov19_1"
+      quality: -70
+    - name: "ARKBIRD_SOLG_APT_Dustsquad_PE_Nov19_2"
+      quality: -70
+    - name: "ARKBIRD_SOLG_SR_APT_Dustsquad_PE_Nov19"
+      quality: -70
+    - name: "ARKBIRD_SOLG_APT_APT27_Hyperbro_Apr_2021_1"
+      quality: -40
+    - name: "ARKBIRD_SOLG_Loader_Buer_Nov_2020_1" # strings with too many matches in large files
+      quality: -20
+    - name: "ARKBIRD_SOLG_Ins_NSIS_Buer_Nov_2020_1"
+      quality: -60
+    - name: "ARKBIRD_SOLG_Ins_NSIS_Buer_Nov_2020_2"
+      quality: -60
+    - name: "ARKBIRD_SOLG_APT_APT28_Zekapab_Mar_2021_1"
+      quality: -40
+      score: 60
+    - name: "ARKBIRD_SOLG_RAN_ELF_Hive_Oct_2021_1"
+      quality: -40
+      score: 60
+    # Malpedia
+    - name: "MALPEDIA_Win_Xtunnel_Auto"
+      quality: -60
+    - name: "MALPEDIA_Win_Telebot_Auto"
+      quality: -90
+    - name: "MALPEDIA_Win_Flawedammyy_Auto"
+      quality: -40
+    - name: "MALPEDIA_Win_Hookinjex_Auto"
+      quality: -50
+    - name: "MALPEDIA_Win_R980_Auto"
+      quality: -30
+    - name: "MALPEDIA_Win_Velso_Auto"
+      quality: -60
+    - name: "MALPEDIA_Win_Rdat_Auto"
+      quality: -30
+      score: 60
+    - name: "MALPEDIA_Win_Qtbot_Auto"
+      quality: -50
+      score: 60
+    - name: "MALPEDIA_Win_Strongpity_Auto"
+      quality: -30
+      score: 60
+    - name: "MALPEDIA_Win_Synccrypt_Auto"
+      quality: -30
+    - name: "MALPEDIA_Win_Lorenz_Auto"
+      quality: -30
+      score: 60
+    - name: "MALPEDIA_Win_Gauss_Auto"
+      quality: -60
+      score: 60
+    - name: "MALPEDIA_Win_Kleptoparasite_Stealer_Auto"
+      quality: -40
+      score: 60
+    - name: "MALPEDIA_Elf_Gobrat_Auto"
+      quality: -40
+      score: 60
+    - name: "MALPEDIA_Win_Neutrino_Auto"
+      quality: -30
+      score: 60
+    - name: "MALPEDIA_Win_Alina_Pos_Auto"
+      quality: -60
+      score: 60
+    - name: "MALPEDIA_Elf_Blackcat_Auto"
+      quality: -30
+      score: 60
+    - name: "MALPEDIA_Win_Valley_Rat_Auto"
+      quality: -30
+      score: 60
+    - name: "MALPEDIA_Win_Epsilon_Red_Auto"
+      quality: -60
+      score: 60
+    - name: "MALPEDIA_Win_Hookinjex_Auto"
+      quality: -50
+      score: 60
+    - name: "MALPEDIA_Win_Rektloader_Auto"
+      quality: -70
+      score: 60
+    - name: "MALPEDIA_Win_Xfilesstealer_Auto"
+      quality: -60
+      score: 60
+    - name: "MALPEDIA_Win_Magic_Rat_Auto"
+      quality: -30
+      score: 60
+    - name: "MALPEDIA_Win_Infy_Auto"
+      quality: -30
+      score: 60
+    - name: "MALPEDIA_Win_Goldbackdoor_Auto"
+      quality: -60
+      score: 60
+    - name: "MALPEDIA_Win_Blister_Auto"
+      quality: -50
+      score: 60
+    - name: "MALPEDIA_Win_Aresloader_Auto"
+      quality: -50
+      score: 60
+    - name: "MALPEDIA_Win_Confucius_Auto"
+      quality: -60
+      score: 60
+    - name: "MALPEDIA_Win_Blacksoul_Auto"
+      quality: -60
+      score: 60
+    - name: "MALPEDIA_Win_Winmm_Auto"
+      quality: -40
+      score: 60
+    - name: "MALPEDIA_Win_Blacksuit_Auto"
+      quality: -60
+      score: 60
+    - name: "MALPEDIA_Win_Subzero_Auto"
+      quality: -60
+      score: 60
+    - name: "MALPEDIA_Win_Xorist_Auto"
+      quality: -60
+      score: 60
+    - name: "MALPEDIA_Win_Unidentified_090_Auto"
+      quality: -60
+      score: 60
+    # Signature Base
+    - name: "SIGNATURE_BASE_Cobaltstrike_C2_Host_Indicator"
+      quality: -20
+      score: 60
+    - name: "SIGNATURE_BASE_APT_Lazarus_Dropper_Jun18_1" # strings with too many matches in large files
+      quality: -20
+      score: 60
+    - name: "SIGNATURE_BASE_M_APT_VIRTUALPITA_1"
+      quality: -40
+      score: 60
+    - name: "SIGNATURE_BASE_Hdconfig"
+      quality: -30
+      score: 60
+    # DeadBits
+    - name: "DEADBITS_APT32_Kerrdown"
+      quality: -100
+    - name: "DEADBITS_Glupteba"
+      quality: -70
+    # BinaryAlert
+    - name: "BINARYALERT_Ransomware_Windows_Wannacry"
+      quality: -30
+    - name: "BINARYALERT_Eicar_Substring_Test"
+      quality: -40
+      score: 50
+    # JPCERT
+    - name: "JPCERTCC_Plugx"
+      quality: -70
+      score: 60
+    - name: "JPCERTCC_Ursnif"
+      quality: -70
+      score: 60
+    - name: "JPCERTCC_Ursnif_1"
+      quality: -20
+      score: 60
+    - name: "JPCERTCC_Cobaltstrike"
+      quality: -70
+      score: 60
+    - name: "JPCERTCC_Datper"
+      quality: -50
+      score: 60
+    # Binary Alert
+    - name: "BINARYALERT_Hacktool_Windows_Mimikatz_Modules"
+      quality: -70
+      score: 60
+    # Delivr.to
+    - name: "DELIVRTO_SUSP_SVG_Onload_Onerror_Jul23"
+      quality: -100
+    # SecuInfra
+    - name: "SECUINFRA_OBFUS_Powershell_Common_Replace"
+      quality: -100
+    - name: "SECUINFRA_SUSP_Websites"
+      quality: -80
+    - name: "SECUINFRA_SUSP_EXE_In_ISO"
+      quality: -80
+    - name: "SECUINFRA_SUSP_VBS_In_ISO"
+      quality: -60
+    - name: "SECUINFRA_APT_Bitter_Zxxz_Downloader"
+      quality: -50
+    - name: "SECUINFRA_SUSP_Reverse_DOS_Header"
+      quality: -80
+    - name: "SECUINFRA_SUSP_LNK_Powershell"
+      quality: -80
+      score: 40
+    - name: "SECUINFRA_SUSP_LNK_CMD"
+      quality: -80
+      score: 40
+    - name: "SECUINFRA_SUSP_Ngrok_URL"
+      quality: -80
+      score: 40
+    - name: "SECUINFRA_SUSP_Powershell_Base64_Decode"
+      quality: -20
+      score: 60
+    - name: "SECUINFRA_SUSP_Scheduled_Tasks_Create_From_Susp_Dir"
+      quality: -20
+      score: 60
+    - name: "SECUINFRA_SUSP_VBS_Wscript_Shell"
+      quality: -60
+      score: 45
+    - name: "SECUINFRA_SUS_Unsigned_APPX_MSIX_Installer_Feb23"
+      quality: -40
+      score: 50
+    # BlackBerry
+    - name: "BLACKBERRY_Mal_Infostealer_Win32_Jupyter_Infostealer_Module"
+      quality: -80
+    # GCTI
+    - name: "GCTI_Sliver_Implant_32Bit"
+      quality: -50
+      score: 60
+    # EmbeeResearch
+    - name: "EMBEERESEARCH_Win_Havoc_Ntdll_Hashes_Oct_2022"
+      quality: -80
+      score: 40
+    - name: "EMBEERESEARCH_Win_Redline_Wextract_Hunting_Oct_2023"
+      quality: -60
+      score: 60
+    - name: "EMBEERESEARCH_Win_Amadey_Bytecodes_Oct_2023"
+      quality: -60
+      score: 60
+    - name: "EMBEERESEARCH_Win_Bruteratel_Syscall_Hashes_Oct_2022"
+      quality: -50
+      score: 60
+    # SBousseaden
+    - name: "SBOUSSEADEN_Truncated_Win10_X64_Nativesyscall"
+      quality: -90
+      score: 40
+    - name: "SBOUSSEADEN_Hunt_Skyproj_Backdoor"
+      quality: -70
+      score: 40
+    - name: "SBOUSSEADEN_Hunt_Multi_EDR_Discovery"
+      quality: -70
+      score: 40
+    - name: "SBOUSSEADEN_Hunt_Lsass_Ntds_Ext"
+      quality: -70
+      score: 40
+    - name: "SBOUSSEADEN_Hunt_Credaccess_Iis_Xor"
+      quality: -30
+      score: 60
+    - name: "SBOUSSEADEN_Mem_Webcreds_Regexp_Xor"
+      quality: -30
+      score: 60
+    # Dr4k0nia
+    - name: "DR4K0NIA_Msil_Suspicious_Use_Of_Strreverse"
+      quality: -30
+      score: 60
+    # AvastTI 
+    - name: "AVASTTI_Manjusaka_Payload_Mz"
+      quality: -40
+      score: 60
+    # Cod3nym
+    - name: "COD3NYM_SUSP_OBF_NET_Confuserex_Name_Pattern_Jan24"
+      quality: 0
+      score: 50
+    - name: "COD3NYM_SUSP_OBF_NET_Eazfuscator_String_Encryption_Jan24"
+      quality: 0
+      score: 50
