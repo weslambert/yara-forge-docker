@@ -16,6 +16,8 @@ sudo docker run -it --rm --name=yara-forge -v ${PWD}/yara-forge-config.yml:/yara
 
 By default, the command will pull the [hosted](https://hub.docker.com/r/wlambert/yara-forge) version of the YARA Forge Docker image, but the command can be changed to use your own locally hosted image.
 
+To speciy a specific version you can reference the Docker image name with something like `wlambert/yara-forge:20240114`.
+
 To build a local image, run the following command and substitute the name in the command above:
 
 `sudo docker build -t $yourrepository/imagename`
