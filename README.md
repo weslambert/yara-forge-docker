@@ -10,7 +10,7 @@ git clone https://github.com/weslambert/yara-forge-docker && cd yara-forge-docke
 sudo docker run -it --rm --name=yara-forge -v ${PWD}/yara-forge-config.yml:/yara-forge/yara-forge-config.yml -v ${PWD}/packages:/yara-forge/packages wlambert/yara-forge python yara-forge.py -c yara-forge-config.yml
 ```
 
-By default, the command will pull the hosted version of the YARA Forge Docker image, but the command can be changed to use your own locally hosted image.
+By default, the command will pull the [hosted](https://hub.docker.com/r/wlambert/yara-forge) version of the YARA Forge Docker image, but the command can be changed to use your own locally hosted image.
 
 To build a local image, run the following command and substitute the name in the command above:
 
@@ -18,3 +18,6 @@ To build a local image, run the following command and substitute the name in the
 
 # Custom Configuration
 The configuration and scoring file (both from the original YARA Forge repository) can be modified as desired before running the above command. This can be useful for excluding rules, or including other rules not included by default.
+
+# Packages
+Rule packages will be created under `yara-forge-docker/packages`, with a separate directory for the core, extended, and full rule sets.
