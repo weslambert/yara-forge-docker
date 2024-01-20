@@ -1,7 +1,11 @@
 # yara-forge-docker
 Run YARA Forge in a Docker container
 
-This project is based on the great work by Florian Roth and his team on [YARA Forge](https://github.com/yarahq/yara-forge). Nothing with YARA Forge is changed -- you can simply run it in a Docker container, as opposed to installing Python components directly on the filesystem.
+This project is based on the great work by Florian Roth and his team on [YARA Forge](https://github.com/yarahq/yara-forge). 
+
+Check out the blog post about YARA Forge here: https://cyb3rops.medium.com/introducing-yara-forge-a77cbb77dcab
+
+Nothing with YARA Forge is changed -- you can simply run it in a Docker container, as opposed to installing Python components directly on the filesystem.
 
 # Example
 ```
